@@ -70,17 +70,18 @@ export default function HeroSection() {
     video.load()
     video.pause()
 
+    let isSeeking = false
+    const onSeeked = () => { isSeeking = false }
+    video.addEventListener('seeked', onSeeked)
+
     // RAF loop for smooth scrub
     const tick = () => {
       const duration = video.duration
       if (duration && !isNaN(duration) && video.readyState >= 2) {
         const target = progressRef.current * duration
-        if (Math.abs(video.currentTime - target) > 0.01) {
-          if (video.fastSeek) {
-            video.fastSeek(target)
-          } else {
-            video.currentTime = target
-          }
+        if (!isSeeking && Math.abs(video.currentTime - target) > 0.03) {
+          isSeeking = true
+          video.currentTime = target
         }
       }
       rafRef.current = requestAnimationFrame(tick)
@@ -117,6 +118,7 @@ export default function HeroSection() {
     return () => {
       stopRAF()
       video.removeEventListener('loadedmetadata', forceBuffer)
+      video.removeEventListener('seeked', onSeeked)
       ctx.revert()
     }
   }, [])

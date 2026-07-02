@@ -843,29 +843,45 @@ button { cursor: none; background: none; border: none; font: inherit; }
    RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
+  .nav { padding: 1rem 6vw; }
   .nav__links { display: none; }
 
-  .menu__grid { grid-template-columns: 1fr; }
+  .hero__title { font-size: clamp(4rem, 15vw, 6rem); }
+  .manifesto { padding: 12vh 6vw; }
+  .manifesto__bar { display: none; }
+
+  .scroll-video__title { font-size: clamp(2.5rem, 12vw, 4rem); }
+
+  .menu { padding: 10vh 6vw; }
+  .menu__grid { grid-template-columns: 1fr; gap: 4px; }
 
   .showcase {
     grid-template-columns: 1fr;
-    padding: 8vh 6vw;
+    padding: 10vh 6vw;
     height: auto;
     min-height: 100dvh;
+    gap: 3rem;
   }
   .showcase__canvas-wrap { height: 45vh; }
 
+  .gallery { padding: 10vh 6vw; }
   .gallery__grid {
     grid-template-columns: 1fr;
     grid-template-rows: auto;
   }
   .gallery__item:first-child { grid-row: auto; }
 
+  .reserve { padding: 10vh 6vw; }
+  .testimonials { padding: 10vh 6vw; }
+  .hours { padding: 10vh 6vw; }
+
+  .footer { padding: 3rem 6vw 2rem; }
   .footer__main {
     grid-template-columns: 1fr;
     text-align: center;
+    gap: 2rem;
   }
-  .footer__links { justify-content: center; }
+  .footer__links { justify-content: center; flex-wrap: wrap; }
 }
 
 /* ============================================
