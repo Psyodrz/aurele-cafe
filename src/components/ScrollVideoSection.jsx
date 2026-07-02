@@ -27,17 +27,18 @@ export default function ScrollVideoSection({ videoSrc, poster, title, subtitle }
       try { video.currentTime = 0.05 } catch (e) { /* ignore */ }
     }
 
+    let isSeeking = false
+    const onSeeked = () => { isSeeking = false }
+    video.addEventListener('seeked', onSeeked)
+
     // RAF seek loop — runs ONLY while this section is on-screen
     const tick = () => {
       const duration = video.duration
       if (duration && !isNaN(duration) && video.readyState >= 2) {
         const target = progressRef.current * duration
-        if (Math.abs(video.currentTime - target) > 0.01) {
-          if (video.fastSeek) {
-            video.fastSeek(target)
-          } else {
-            video.currentTime = target
-          }
+        if (!isSeeking && Math.abs(video.currentTime - target) > 0.03) {
+          isSeeking = true
+          video.currentTime = target
         }
       }
       rafRef.current = requestAnimationFrame(tick)
@@ -83,6 +84,7 @@ export default function ScrollVideoSection({ videoSrc, poster, title, subtitle }
     return () => {
       stopRAF()
       ctx.revert()
+      video.removeEventListener('seeked', onSeeked)
     }
   }, [])
 
