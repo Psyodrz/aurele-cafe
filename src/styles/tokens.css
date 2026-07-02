@@ -1,0 +1,25 @@
+:root {
+  --bg:        #0A0906;
+  --fg:        #F4F0EA;
+  --gold:      #C9A86C;
+  --gold-dim:  rgba(201, 168, 108, 0.25);
+  --surface:   #111009;
+
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body:    'Inter', sans-serif;
+
+  --text-hero:    clamp(4rem, 12vw, 10rem);
+  --text-display: clamp(2rem, 5vw, 5rem);
+  --text-quote:   clamp(1.5rem, 3vw, 3rem);
+  --text-lg:      clamp(1rem, 1.5vw, 1.25rem);
+  --text-base:    1rem;
+  --text-sm:      0.875rem;
+  --text-xs:      0.75rem;
+
+  --tracking-wide: 0.15em;
+  --tracking-hero: 0.3em;
+  --leading-tight: 1.1;
+  --leading-base:  1.6;
+
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
